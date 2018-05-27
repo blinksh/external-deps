@@ -10,7 +10,7 @@ HHROOT="https://github.com/holzschu"
 
 rm -rf ./Frameworks
 mkdir ./Frameworks
-mkdir ./Frameworks/libs
+mkdir ./Frameworks/lib
 
 
 (
