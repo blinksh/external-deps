@@ -1,12 +1,28 @@
 #!/bin/bash
 set -e
 
+LIBMOSH_VER="1.3.2-8cd6688"
+PROTOBF_VER="2.6.1"
 IOS_SYSTEM_VER="2.1"
 
+GHROOT="https://github.com/blinksh"
 HHROOT="https://github.com/holzschu"
 
 rm -rf ./Frameworks
 mkdir ./Frameworks
+
+(
+cd Frameworks
+echo "Downloading libmoshios-$LIBMOSH_VER.framework.tar.gz"
+curl -OL $GHROOT/build-mosh/releases/download/$LIBMOSH_VER/libmoshios-$LIBMOSH_VER.framework.tar.gz
+( tar -zxf libmoshios-*.tar.gz && rm libmoshios-*.tar.gz ) || { echo "Libmoshios framework failed to download"; exit 1; }
+# protobuf
+echo "Downloading protobuf-$PROTOBF_VER.framework.tar.gz"
+curl -OL $GHROOT/build-protobuf/releases/download/$PROTOBF_VER/protobuf-$PROTOBF_VER.tar.gz
+( tar -zxf protobuf-*.tar.gz && cp protobuf-*/lib/libprotobuf.a ./lib/ && rm -rf protobuf-* ) || { echo "Protobuf framework failed to download"; exit 1; }
+)
+
+)
 
 git clone --depth 1 --recursive https://github.com/holzschu/libssh2-for-iOS.git libssh2
 
