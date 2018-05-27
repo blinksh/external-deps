@@ -2,6 +2,8 @@ osx_image: xcode9.3
 language: objective-c
 script:
 - "./build.sh"
+before_deploy:
+  - "tar czf releases.tar.gz Frameworks"
 deploy:
   provider: releases
   api_key:
