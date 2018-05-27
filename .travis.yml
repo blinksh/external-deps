@@ -1,5 +1,11 @@
 osx_image: xcode9.3
 language: objective-c
-
 script:
-- ./build.sh
+- "./build.sh"
+deploy:
+  provider: releases
+  api_key:
+    secure: s/DJ9CXXM0763IhZxhGfFh5hOA8Hl+khhXa3aMtI4GIknE/osl3I/kWSWY28IWwsPEJrZFL3eCl2z8e2+nrZ66sj4kdY3ViZGaIw6VrdqWFqtIvA3fpxqQDSef2NBPjJ3OOZss64lxZaSPGff62FgxDzypnjmD0zZvnzQHL+aMG8nvfD/k3W4s+FKdU0NnD0zj4VvflTAreuOCFwBDXIpSER8qSf1r2pKFMrmeJBHB6oV7Sirf8b0G0gQ7rigcnM+M83ZCz6Fb8O0qpIYOSMoZlc4Jv2kmLBHxPi6jjCx1Aryo8ilb4q1J18XesFcChGLzuFNCS1GyMjGadvykqf8dlT2aTDz3tmjyqyQkTI3qCbZIZgBFE9MrplG8F/p/YLOFknpVXrDYRGL5zLvfmDHPPnS34lQYq6jfTnd8ru4WNWZd0LEpLlvsoH4Kl+JY4uZlfC7BPXOS+Fje/8pyvsw7rWDIg+ffS3nJHh1ctjUgsUDj+sTwSbKG6NYhljw6YHpHO9tTPIiIcfr72N3Hp3/t/zpgUFzJEAInk5X74tQRR+BAkRVJvorFjjGdS/mYIYHQSbWTeYXgjGDy5c5XeBclpQpgu522APht+G7d8EUZL7RO3TEmKlF2tci9qCZBly1XZg0NoYlWq6mW4SEQgKf3e6I73Rke1pAEjOKoKqATE=
+  file: frameworks.tar.gz
+  on:
+    repo: blinksh/external-deps
