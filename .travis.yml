@@ -3,7 +3,7 @@ language: objective-c
 script:
 - "./build.sh"
 before_deploy:
-  - "tar czf releases.tar.gz Frameworks"
+  - "tar czf frameworkds.tar.gz Frameworks"
 deploy:
   provider: releases
   api_key:
