@@ -11,3 +11,6 @@ deploy:
   file: frameworks.tar.gz
   on:
     repo: blinksh/external-deps
+  skip_cleanup: true
+  on:
+    tags: true
