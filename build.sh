@@ -10,7 +10,7 @@ HHROOT="https://github.com/holzschu"
 
 rm -rf ./Frameworks
 mkdir ./Frameworks
-mkdir ./Frameworks/lib
+
 
 (
 cd Frameworks
@@ -23,7 +23,6 @@ curl -OL $GHROOT/build-protobuf/releases/download/$PROTOBF_VER/protobuf-$PROTOBF
 ( tar -zxf protobuf-*.tar.gz && cp protobuf-*/lib/libprotobuf.a ./lib/ && rm -rf protobuf-* ) || { echo "Protobuf framework failed to download"; exit 1; }
 )
 
-)
 
 git clone --depth 1 --recursive https://github.com/holzschu/libssh2-for-iOS.git libssh2
 
