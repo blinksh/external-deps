@@ -5,7 +5,7 @@ script:
 before_deploy:
   - "tar czf frameworks.tar.gz Frameworks"
 before_install:
-  - "brew install python"
+  - "brew install python@3"
   - "git clone --depth 1 --recursive https://github.com/ruslo/polly.git"
 deploy:
   provider: releases
