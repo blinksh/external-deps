@@ -95,6 +95,8 @@ cp -rf ./build/Release-iphoneos/*.framework ../Frameworks
 
 rm -rf ./ios_system
 
+echo "Cloning network_ios"
+
 git clone --depth 1 --recursive https://github.com/holzschu/network_ios.git network_ios
 
 cp -rf ./Frameworks/openssl.framework ./network_ios/Frameworks/
