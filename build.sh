@@ -109,5 +109,11 @@ curl -OL $HHROOT/ios_system/releases/download/v$IOS_SYSTEM_VER/ios_error.h
 xcodebuild -project network_ios.xcodeproj -target network_ios -sdk iphoneos -arch arm64 -configuration Release
 cp -rf ./build/Release-iphoneos/*.framework ../Frameworks/
 )
-
 rm -rf ./network_ios
+
+(
+echo "Building libssh"
+git clone ---depth 1 -b runloop --recursive https://github.com/yury/libssh.git
+cd polly/bin
+python3.6 build.py --clear --toolchain ios-nocodesign --fwd OPENSSL_ROOT_DIR=~/libssh2/openssl CMAKE_INSTALL_RPATH=@rpath/ WITH_STATIC_LIB=ON --ios-multiarch --framework --ios-combined --config Release --home ~/libssh
+)

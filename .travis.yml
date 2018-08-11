@@ -1,9 +1,11 @@
-osx_image: xcode9.3
+osx_image: xcode9.4
 language: objective-c
 script:
 - "./build.sh"
 before_deploy:
   - "tar czf frameworks.tar.gz Frameworks"
+before_install:
+  - "git clone --depth 1 --recursive https://github.com/ruslo/polly.git"
 deploy:
   provider: releases
   api_key:
