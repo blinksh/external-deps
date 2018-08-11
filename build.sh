@@ -79,16 +79,16 @@ cp -r ./Frameworks/libssh2.framework ./ios_system/Frameworks/
 echo "Building ios_system"
 cd ./ios_system
 ./get_sources.sh
-xcodebuild -project ios_system.xcodeproj -target ios_system -sdk iphoneos -arch arm64 -configuration Release
+xcodebuild -project ios_system.xcodeproj -target ios_system -sdk iphoneos -arch arm64 -configuration Release | xcpretty && exit ${PIPESTATUS[0]}
 cp -rf ./build/Release-iphoneos/ios_system.framework ./Frameworks/
 
-xcodebuild -project ios_system.xcodeproj -target awk -sdk iphoneos -arch arm64 -configuration Release
-xcodebuild -project ios_system.xcodeproj -target curl_ios -sdk iphoneos -arch arm64 -configuration Release
-xcodebuild -project ios_system.xcodeproj -target files -sdk iphoneos -arch arm64 -configuration Release
-xcodebuild -project ios_system.xcodeproj -target shell -sdk iphoneos -arch arm64 -configuration Release
-xcodebuild -project ios_system.xcodeproj -target ssh_cmd -sdk iphoneos -arch arm64 -configuration Release
-xcodebuild -project ios_system.xcodeproj -target tar -sdk iphoneos -arch arm64 -configuration Release
-xcodebuild -project ios_system.xcodeproj -target text -sdk iphoneos -arch arm64 -configuration Release
+xedebuild -project ios_system.xcodeproj -target awk -sdk iphoneos -arch arm64 -configuration Release | xcpretty && exit ${PIPESTATUS[0]}
+xcodebuild -project ios_system.xcodeproj -target curl_ios -sdk iphoneos -arch arm64 -configuration Release | xcpretty && exit ${PIPESTATUS[0]}
+xcodebuild -project ios_system.xcodeproj -target files -sdk iphoneos -arch arm64 -configuration Release | xcpretty && exit ${PIPESTATUS[0]}
+xcodebuild -project ios_system.xcodeproj -target shell -sdk iphoneos -arch arm64 -configuration Release | xcpretty && exit ${PIPESTATUS[0]}
+xcodebuild -project ios_system.xcodeproj -target ssh_cmd -sdk iphoneos -arch arm64 -configuration Release | xcpretty && exit ${PIPESTATUS[0]}
+xcodebuild -project ios_system.xcodeproj -target tar -sdk iphoneos -arch arm64 -configuration Release | xcpretty && exit ${PIPESTATUS[0]}
+xcodebuild -project ios_system.xcodeproj -target text -sdk iphoneos -arch arm64 -configuration Release | xcpretty && exit ${PIPESTATUS[0]}
 
 cp -rf ./build/Release-iphoneos/*.framework ../Frameworks
 )
@@ -106,7 +106,7 @@ echo "Building network_ios"
 cd ./network_ios
 echo "Downloading header file:"
 curl -OL $HHROOT/ios_system/releases/download/v$IOS_SYSTEM_VER/ios_error.h 
-xcodebuild -project network_ios.xcodeproj -target network_ios -sdk iphoneos -arch arm64 -configuration Release
+xcodebuild -project network_ios.xcodeproj -target network_ios -sdk iphoneos -arch arm64 -configuration Release | xcpretty && exit ${PIPESTATUS[0]}
 cp -rf ./build/Release-iphoneos/*.framework ../Frameworks/
 )
 rm -rf ./network_ios
@@ -115,7 +115,7 @@ rm -rf ./network_ios
 echo "Building libssh"
 git clone ---depth 1 -b runloop --recursive https://github.com/yury/libssh.git
 cd polly/bin
-python3 build.py --clear --toolchain ios-nocodesign --fwd OPENSSL_ROOT_DIR=../../libssh2/openssl CMAKE_INSTALL_RPATH=@rpath/ WITH_STATIC_LIB=ON --ios-multiarch --framework --ios-combined --config Release --home ../../libssh
+python3 build.py --clear --verbosity-level=silent --toolchain ios-nocodesign --fwd OPENSSL_ROOT_DIR=../../libssh2/openssl CMAKE_INSTALL_RPATH=@rpath/ WITH_STATIC_LIB=ON --ios-multiarch --framework --ios-combined --config Release --home ../../libssh
 cp _install/ios-nocodesign/lib/libssh.a ../../Frameworks/lib/libsshd.a
 cp -r _install/ios-nocodesign/include ../../Frameworks/include
 )
