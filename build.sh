@@ -79,22 +79,21 @@ cp -r ./Frameworks/libssh2.framework ./ios_system/Frameworks/
 echo "Building ios_system"
 cd ./ios_system
 ./get_sources.sh
-xcodebuild -project ios_system.xcodeproj -target ios_system -sdk iphoneos -arch arm64 -configuration Release | xcpretty && exit ${PIPESTATUS[0]}
+xcodebuild -project ios_system.xcodeproj -target ios_system -sdk iphoneos -arch arm64 -configuration Release | xcpretty
 cp -rf ./build/Release-iphoneos/ios_system.framework ./Frameworks/
-cp -rf ./build/Release-iphoneos/ios_system.framework ../Frameworks/
 
-xcodebuild -project ios_system.xcodeproj -target awk -sdk iphoneos -arch arm64 -configuration Release | xcpretty && exit ${PIPESTATUS[0]}
-xcodebuild -project ios_system.xcodeproj -target curl_ios -sdk iphoneos -arch arm64 -configuration Release | xcpretty && exit ${PIPESTATUS[0]}
-xcodebuild -project ios_system.xcodeproj -target files -sdk iphoneos -arch arm64 -configuration Release | xcpretty && exit ${PIPESTATUS[0]}
-xcodebuild -project ios_system.xcodeproj -target shell -sdk iphoneos -arch arm64 -configuration Release | xcpretty && exit ${PIPESTATUS[0]}
-xcodebuild -project ios_system.xcodeproj -target ssh_cmd -sdk iphoneos -arch arm64 -configuration Release | xcpretty && exit ${PIPESTATUS[0]}
-xcodebuild -project ios_system.xcodeproj -target tar -sdk iphoneos -arch arm64 -configuration Release | xcpretty && exit ${PIPESTATUS[0]}
-xcodebuild -project ios_system.xcodeproj -target text -sdk iphoneos -arch arm64 -configuration Release | xcpretty && exit ${PIPESTATUS[0]}
+xcodebuild -project ios_system.xcodeproj -target awk -sdk iphoneos -arch arm64 -configuration Release | xcpretty
+xcodebuild -project ios_system.xcodeproj -target curl_ios -sdk iphoneos -arch arm64 -configuration Release | xcpretty
+xcodebuild -project ios_system.xcodeproj -target files -sdk iphoneos -arch arm64 -configuration Release | xcpretty
+xcodebuild -project ios_system.xcodeproj -target shell -sdk iphoneos -arch arm64 -configuration Release | xcpretty
+xcodebuild -project ios_system.xcodeproj -target ssh_cmd -sdk iphoneos -arch arm64 -configuration Release | xcpretty
+xcodebuild -project ios_system.xcodeproj -target tar -sdk iphoneos -arch arm64 -configuration Release | xcpretty
+xcodebuild -project ios_system.xcodeproj -target text -sdk iphoneos -arch arm64 -configuration Release | xcpretty
 
 cp -rf ./build/Release-iphoneos/*.framework ../Frameworks
 )
 
-rm -rf ./ios_system
+#rm -rf ./ios_system
 
 echo "Cloning network_ios"
 
@@ -109,7 +108,7 @@ echo "Building network_ios"
 cd ./network_ios
 echo "Downloading header file:"
 curl -OL $HHROOT/ios_system/releases/download/v$IOS_SYSTEM_VER/ios_error.h 
-xcodebuild -project network_ios.xcodeproj -target network_ios -sdk iphoneos -arch arm64 -configuration Release | xcpretty && exit ${PIPESTATUS[0]}
+xcodebuild -project network_ios.xcodeproj -target network_ios -sdk iphoneos -arch arm64 -configuration Release | xcpretty
 cp -rf ./build/Release-iphoneos/*.framework ../Frameworks/
 )
 rm -rf ./network_ios
