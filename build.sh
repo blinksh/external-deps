@@ -115,7 +115,7 @@ rm -rf ./network_ios
 
 (
 echo "Building libssh"
-git clone ---depth 1 -b runloop --recursive https://github.com/yury/libssh.git
+git clone --depth 1 -b runloop --recursive https://github.com/yury/libssh.git
 cd polly/bin
 python3 build.py --clear --verbosity-level=silent --toolchain ios-nocodesign --fwd OPENSSL_ROOT_DIR=../../libssh2/openssl CMAKE_INSTALL_RPATH=@rpath/ WITH_STATIC_LIB=ON --ios-multiarch --framework --ios-combined --config Release --home ../../libssh
 cp _install/ios-nocodesign/lib/libssh.a ../../Frameworks/lib/libsshd.a
