@@ -81,6 +81,7 @@ cd ./ios_system
 ./get_sources.sh
 xcodebuild -project ios_system.xcodeproj -target ios_system -sdk iphoneos -arch arm64 -configuration Release | xcpretty && exit ${PIPESTATUS[0]}
 cp -rf ./build/Release-iphoneos/ios_system.framework ./Frameworks/
+cp -rf ./build/Release-iphoneos/ios_system.framework ../Frameworks/
 
 xedebuild -project ios_system.xcodeproj -target awk -sdk iphoneos -arch arm64 -configuration Release | xcpretty && exit ${PIPESTATUS[0]}
 xcodebuild -project ios_system.xcodeproj -target curl_ios -sdk iphoneos -arch arm64 -configuration Release | xcpretty && exit ${PIPESTATUS[0]}
