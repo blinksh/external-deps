@@ -113,6 +113,7 @@ cp -rf ./build/Release-iphoneos/*.framework ../Frameworks/
 rm -rf ./network_ios
 
 (
+echo "Building openssl"
 cd libssh2/openssl
 ./build-libssl.sh --archs=arm64
 )
