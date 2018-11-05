@@ -121,7 +121,7 @@ cd libssh2/openssl
 (
 echo "Building libssh"
 git clone --depth 1 -b runloop --recursive https://github.com/yury/libssh.git
-python3.7 polly/bin/build.py --clear --toolchain ios-nocodesign --fwd IPHONES_ARCHS=arm64 OPENSSL_ROOT_DIR=`pwd`/libssh2/openssl CMAKE_INSTALL_RPATH=@rpath/ BUILD_STATIC_LIB=ON --framework --config Release --home libssh && echo "build warning"
+python3.7 polly/bin/build.py --clear --toolchain ios-nocodesign --fwd IPHONES_ARCHS=arm64 OPENSSL_ROOT_DIR=`pwd`/libssh2/openssl CMAKE_INSTALL_RPATH=@rpath/ WITH_STATIC_LIB=ON --framework --config Release --home libssh && echo "build warning"
 cp _install/ios-nocodesign/lib/libssh.a ./Frameworks/lib/libsshd.a
 cp -r _install/ios-nocodesign/include Frameworks/include/
 )
