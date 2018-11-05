@@ -117,7 +117,7 @@ echo "Building openssl"
 cd libssh2/openssl
 ./build-libssl.sh --archs=arm64
 )
-git clone --depth 1 --recursive https://github.com/ruslo/polly.git
+#git clone --depth 1 --recursive https://github.com/ruslo/polly.git
 (
 echo "Building libssh"
 git clone --depth 1 -b runloop --recursive https://github.com/yury/libssh.git
