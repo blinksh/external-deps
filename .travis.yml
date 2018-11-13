@@ -7,7 +7,6 @@ before_deploy:
 before_install:
   - "brew install python@3"
   - "brew install cmake"
-  - "git clone --depth 1 --recursive https://github.com/ruslo/polly.git"
 deploy:
   provider: releases
   api_key:
