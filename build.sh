@@ -22,7 +22,6 @@ curl -OL $GHROOT/build-mosh/releases/download/$LIBMOSH_VER/libmoshios-$LIBMOSH_V
 echo "Downloading protobuf-$PROTOBF_VER.framework.tar.gz"
 curl -OL $GHROOT/build-protobuf/releases/download/$PROTOBF_VER/protobuf-$PROTOBF_VER.tar.gz
 ( tar -zxf protobuf-*.tar.gz && cp protobuf-*/lib/libprotobuf.a ./lib/ && rm -rf protobuf-* ) || { echo "Protobuf framework failed to download"; exit 1; }
-
 )
 
 
@@ -31,7 +30,7 @@ git clone --depth 1 --recursive https://github.com/holzschu/libssh2-for-iOS.git 
 (
 echo "Building openssl"
 cd libssh2
-./openssl/build-libssl.sh
+./openssl/build-libssl.sh --version=1.1.0j --deprecated
 # Make dynamic framework, with embed-bitcode, iOS + Simulator:
 rm -rf build
 rm -rf openssl.framework
@@ -115,7 +114,7 @@ rm -rf ./network_ios
 (
 echo "Building openssl"
 cd libssh2/openssl
-./build-libssl.sh --archs=arm64
+./build-libssl.sh --archs=arm64 #--version=1.1.0j --deprecated
 )
 git clone --depth 1 --recursive https://github.com/ruslo/polly.git
 (
