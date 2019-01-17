@@ -30,7 +30,7 @@ git clone --depth 1 --recursive https://github.com/holzschu/libssh2-for-iOS.git 
 (
 echo "Building openssl"
 cd libssh2
-./openssl/build-libssl.sh --version=1.1.0j --deprecated
+./openssl/build-libssl.sh --version=1.0.2q
 # Make dynamic framework, with embed-bitcode, iOS + Simulator:
 rm -rf build
 rm -rf openssl.framework
@@ -68,7 +68,7 @@ cp -r ./libssh2/libssh2.framework ./Frameworks/
 
 #rm -rf libssh2
 
-git clone --depth 1 --recursive https://github.com/holzschu/ios_system.git ios_system
+git clone --recursive https://github.com/holzschu/ios_system.git ios_system
 
 cp -r ./Frameworks/openssl.framework ./ios_system/Frameworks/
 cp -r ./Frameworks/libssh2.framework ./ios_system/Frameworks/
@@ -76,6 +76,7 @@ cp -r ./Frameworks/libssh2.framework ./ios_system/Frameworks/
 (
 echo "Building ios_system"
 cd ./ios_system
+git checkout f10015f0e89a75b01a7d48c5797cf5dfde740c05
 ./get_sources.sh
 xcodebuild -project ios_system.xcodeproj -target ios_system -sdk iphoneos -arch arm64 -configuration Release | xcpretty
 cp -rf ./build/Release-iphoneos/ios_system.framework ./Frameworks/
@@ -114,7 +115,8 @@ rm -rf ./network_ios
 (
 echo "Building openssl"
 cd libssh2/openssl
-./build-libssl.sh --archs=arm64 #--version=1.1.0j --deprecated
+#./build-libssl.sh --archs=arm64 #--version=1.1.0j --deprecated
+./build-libssl.sh --archs=arm64 --version=1.0.2q
 )
 git clone --depth 1 --recursive https://github.com/ruslo/polly.git
 (
