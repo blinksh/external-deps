@@ -76,7 +76,7 @@ cp -r ./Frameworks/libssh2.framework ./ios_system/Frameworks/
 (
 echo "Building ios_system"
 cd ./ios_system
-git checkout f10015f0e89a75b01a7d48c5797cf5dfde740c05
+# git checkout f10015f0e89a75b01a7d48c5797cf5dfde740c05
 ./get_sources.sh
 xcodebuild -project ios_system.xcodeproj -target ios_system -sdk iphoneos -arch arm64 -configuration Release | xcpretty
 cp -rf ./build/Release-iphoneos/ios_system.framework ./Frameworks/
