@@ -30,7 +30,7 @@ git clone --depth 1 --recursive https://github.com/holzschu/libssh2-for-iOS.git 
 (
 echo "Building openssl"
 cd libssh2
-./openssl/build-libssl.sh --version=1.0.2q
+./openssl/build-libssl.sh --version=1.0.2r
 # Make dynamic framework, with embed-bitcode, iOS + Simulator:
 rm -rf build
 rm -rf openssl.framework
@@ -116,7 +116,7 @@ rm -rf ./network_ios
 echo "Building openssl"
 cd libssh2/openssl
 #./build-libssl.sh --archs=arm64 #--version=1.1.0j --deprecated
-./build-libssl.sh --archs=arm64 --version=1.0.2q
+./build-libssl.sh --archs=arm64 --version=1.0.2r
 )
 git clone --depth 1 --recursive https://github.com/ruslo/polly.git
 (
