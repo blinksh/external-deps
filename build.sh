@@ -106,7 +106,7 @@ cp -rf ./Frameworks/ios_system.framework ./network_ios/Frameworks/
 echo "Building network_ios"
 cd ./network_ios
 echo "Downloading header file:"
-curl -OL $HHROOT/ios_system/releases/download/v$IOS_SYSTEM_VER/ios_error.h 
+curl -LO https://raw.githubusercontent.com/holzschu/ios_system/master/ios_error.h
 xcodebuild -project network_ios.xcodeproj -target network_ios -sdk iphoneos -arch arm64 -configuration Release | xcpretty
 cp -rf ./build/Release-iphoneos/*.framework ../Frameworks/
 )
