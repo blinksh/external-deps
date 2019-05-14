@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-LIBMOSH_VER="1.3.2-8cd6688"
+LIBMOSH_VER="1.3.2-f34e219"
 PROTOBF_VER="2.6.1"
 IOS_SYSTEM_VER="2.1" 
 GHROOT="https://github.com/blinksh"
