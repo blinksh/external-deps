@@ -76,7 +76,7 @@ cp -r ./Frameworks/libssh2.framework ./ios_system/Frameworks/
 (
 echo "Building ios_system"
 cd ./ios_system
-# git checkout f10015f0e89a75b01a7d48c5797cf5dfde740c05
+git checkout 8e3ae33f6c615ac192a97a0d091daf918c3bcd52
 ./get_sources.sh
 xcodebuild -project ios_system.xcodeproj -target ios_system -sdk iphoneos -arch arm64 -configuration Release | xcpretty
 cp -rf ./build/Release-iphoneos/ios_system.framework ./Frameworks/
@@ -122,7 +122,7 @@ git clone --depth 1 --recursive https://github.com/ruslo/polly.git
 echo "CODE_SIGN_IDENTITY = " >> polly/scripts/NoCodeSign.xcconfig
 (
 echo "Building libssh"
-git clone --depth 1 -b blink-libssh-0.9.3 --recursive https://github.com/yury/libssh.git
+git clone --depth 1 -b blink-libssh-0.9.4 --recursive https://github.com/yury/libssh.git
 python3.7 polly/bin/build.py --clear --toolchain ios-nocodesign --fwd IPHONES_ARCHS=arm64 OPENSSL_ROOT_DIR=`pwd`/libssh2/openssl CMAKE_INSTALL_RPATH=@rpath/ BUILD_SHARED_LIBS=OFF WITH_EXAMPLES=OFF --framework --config Release --home libssh && echo "build warning"
 cp _install/ios-nocodesign/lib/libssh.a ./Frameworks/lib/libsshd.a
 cp -r _install/ios-nocodesign/include Frameworks/include/
