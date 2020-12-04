@@ -25,11 +25,12 @@ curl -OL $GHROOT/build-protobuf/releases/download/$PROTOBF_VER/protobuf-$PROTOBF
 )
 
 
-git clone --depth 1 --recursive https://github.com/holzschu/libssh2-for-iOS.git libssh2
+git clone --recursive https://github.com/holzschu/libssh2-for-iOS.git libssh2
 
 (
 echo "Building openssl"
 cd libssh2
+git checkout 55d19723de558936f9edc906c2e0849fa3847f65
 ./openssl/build-libssl.sh --version=1.0.2t
 # Make dynamic framework, with embed-bitcode, iOS + Simulator:
 rm -rf build
@@ -70,13 +71,13 @@ cp -r ./libssh2/libssh2.framework ./Frameworks/
 
 git clone --recursive https://github.com/holzschu/ios_system.git ios_system
 
-cp -r ./Frameworks/openssl.framework ./ios_system/Frameworks/
-cp -r ./Frameworks/libssh2.framework ./ios_system/Frameworks/
-
 (
 echo "Building ios_system"
 cd ./ios_system
 git checkout 8e3ae33f6c615ac192a97a0d091daf918c3bcd52
+cp -r ../Frameworks/openssl.framework ./Frameworks/
+cp -r ../Frameworks/libssh2.framework ./Frameworks/
+
 ./get_sources.sh
 xcodebuild -project ios_system.xcodeproj -target ios_system -sdk iphoneos -arch arm64 -configuration Release | xcpretty
 cp -rf ./build/Release-iphoneos/ios_system.framework ./Frameworks/
@@ -96,7 +97,7 @@ cp -rf ./build/Release-iphoneos/*.framework ../Frameworks
 
 echo "Cloning network_ios"
 
-git clone --depth 1 --recursive https://github.com/holzschu/network_ios.git network_ios
+git clone --recursive https://github.com/holzschu/network_ios.git network_ios
 
 cp -rf ./Frameworks/openssl.framework ./network_ios/Frameworks/
 cp -rf ./Frameworks/libssh2.framework ./network_ios/Frameworks/
@@ -105,6 +106,7 @@ cp -rf ./Frameworks/ios_system.framework ./network_ios/Frameworks/
 (
 echo "Building network_ios"
 cd ./network_ios
+git checkout 1868cb378fa962a56d7b61eb0c9d10b37b06252d
 echo "Downloading header file:"
 curl -LO https://raw.githubusercontent.com/holzschu/ios_system/master/ios_error.h
 xcodebuild -project network_ios.xcodeproj -target network_ios -sdk iphoneos -arch arm64 -configuration Release | xcpretty
